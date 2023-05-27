@@ -1,0 +1,22 @@
+{
+  "blogs": [
+    {
+      "title": "About school",
+      "body": "school sucks",
+      "author": "Abduljawad",
+      "id": 1
+    },
+    {
+      "title": "About Math",
+      "body": "Math is simple",
+      "author": "Abdulmuhsin",
+      "id": 2
+    },
+    {
+      "title": "Loading....",
+      "body": "Pending...",
+      "author": "Aliyu",
+      "id": 3
+    }
+  ]
+}
