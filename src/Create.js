@@ -1,12 +1,12 @@
 import { useState } from "react";
-
+import {useNavigate} from 'react-router-dom';
 
 const Create = () => {
 const [title, setTitle] = useState('');
 const [body, setBody] = useState('');
 const [author, setAuthor] = useState('');
 const [loading, setLoading] = useState(false)
-
+const navigate = useNavigate()
 
 const handleSubmit = (e) => {
   e.preventDefault();
@@ -21,7 +21,8 @@ setLoading(true)
     }).then(() => {
         console.log('added');
         setLoading(false);
-        alert("Saved go back to the home page using the link above to see your blog")
+        alert("Saved go back to the home page using the link above to see your blog");
+        navigate('/');
     })
 }
 
