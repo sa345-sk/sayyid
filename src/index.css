@@ -9,6 +9,13 @@
   color: #333;
 }
 
+body {
+  background-image: url('./img/background-image.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  }
+
 .nav {
   padding-left: 20px;
   display: flex;
