@@ -26,7 +26,7 @@ setLoading(true)
     })
 }
 
-    return ( 
+    return (
         <div className="create">
             <h2>Add a new blog</h2>
             <form onSubmit={handleSubmit}>
