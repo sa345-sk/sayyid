@@ -1,30 +1,27 @@
-import { useParams, useNavigate } from "react-router-dom";
-import useFetch from "./useFetch";
-
-const BlogDetails = () => {
-    const navigate = useNavigate();
-    console.log(navigate);
-    const { id } = useParams();
-    const { data: blog, loading, error } = useFetch('http://localhost:8000/blogs/' + id);
-    const handleClick = () => {
-        fetch('http://localhost:8000/blogs/' + id, {
-            method: 'DELETE'
-        }).then(() => {
-            navigate('/');
-        });
+import { docRef } from './config/firebase';
+import {deleteDoc, doc} from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
+const BlogDetails = ({ blog, id}) => {
+    const navigate = useNavigate()
+    const deleteBlog = async (id) => {
+        const bd = doc(docRef, 'blogs', id)
+        try {
+            await deleteDoc(bd)
+            navigate('/')
+        } catch (error) {
+            console.log(error)
+        }
     }
+
     return ( <div className="blog-list">
-        {loading && <div>Loading</div>}
-        {error && <div>{ error }</div>}
-        {blog && (
-            <article>
-                <h1>{blog.title}</h1>
-                <p>Written by {blog.author}</p>
-                <div>{blog.body}</div>
-                <button onClick={handleClick}>Delete</button>
-            </article>
-        )}
-    </div>  );
+        {blog && <article>
+            <h2>{blog.title}</h2>
+            <p>Written by {blog.author}</p>
+            <h3>{blog.id}</h3>
+            <div>{blog.body}</div>
+            <button onClick={() => deleteBlog(id)}>Delete</button>
+        </article>}
+    </div> );
 }
  
 export default BlogDetails;

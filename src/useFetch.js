@@ -1,50 +1,35 @@
 import { useState, useEffect } from "react";
-
-const useFetch = (url) => {
+import { docRef } from "./config/firebase";
+import { getDocs, collection } from 'firebase/firestore';
+const useFetch = () => {
     let [data, setData] = useState(null);
     let [loading, setLoading] = useState(true);
     let [error, setError] = useState(null);
-    useEffect(() => {
-        const abortCont = new AbortController();
-        setTimeout(() => {
-            /*fetch(url)
-                .then(res => {
-                    if (!res.ok) throw Error('Faild to reach your data')
-                    return res.json()
-                }).then(data => {
-                    setData(data);
-                    setLoading(false);
-                })
-                .catch(err => {
-                    setLoading(false);
-                    setError(err.message);
-                })*/
-//Instead of the above Asynchronous javascript
-            async function getData() {
-                try {
-                    let r = await fetch(url, {signal: abortCont.signal });
-                    if (!r.ok) throw Error('Faild to reach your data')
-                    let data = await r.json();
-                    setData(data);
-                    setLoading(false); 
-                    setError(null);
-                } catch (err){
-                    if (err.name === 'AbortError') {
-                        console.log('Aborted')
-                    } else {
-                        setLoading(false);
-                        setError(err.message);
-                    }
-                }
+    let blogsCollection = collection(docRef, 'blogs'); 
+    const abortCont = new AbortController();
+   
+    async function getData() {
+        try {
+            const data = await getDocs(blogsCollection, { signal: abortCont.signal });
+            const filteredData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+            setData(filteredData)
+            setLoading(false)
+            setError(null);
+        } catch (err) {
+            console.log(err)
+            if (err) {
+                setError(err);
+                setLoading(false)
             }
+        }
+    }
+    useEffect(() => {
             getData();
-        }, 1000);
-
      return () => abortCont.abort();
 
-    }, [url]);
+    }, [getData(), abortCont]);
 
-    return {data, loading, error}
+    return {data, loading, error, blogsCollection, getData}
 }
  
 export default useFetch;

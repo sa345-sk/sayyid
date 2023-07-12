@@ -1,13 +1,13 @@
-//import { useState, useEffect } from "react";
+
 import BlogList from "./BlogList";
 import useFetch from "./useFetch";
 const Home = () => {
-  const { data: blogs, loading, error } = useFetch('http://localhost:8000/blogs');
+  const { data: blogs, loading, error} = useFetch();
     return ( 
     <div className="home">
       { error && <div>{ error }</div> }
       { loading && <div>LOADING.....</div> }
-      {blogs && <BlogList blogs={blogs} title='All Blogs!'/>}
+      {blogs && <BlogList blogs={blogs}/>}
     </div> 
     );
 }
