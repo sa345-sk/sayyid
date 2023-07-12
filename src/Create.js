@@ -31,14 +31,7 @@ try {
                 <label>About new blog:</label>
                 <textarea required value={body} onChange={(e) => setBody(e.target.value)}></textarea>
                 <label>Written by:</label>
-                <select value={author} onChange={(e) => setAuthor(e.target.value)} required>
-                    <option value="Abdulmuhsin">Abdulmuhsin</option>
-                    <option value="Na'eem">Na'eem</option>
-                    <option value="Aliyu">Aliyu</option>
-                    <option value="Brad">Brad</option>
-                    <option value="Mashkur">Mashkur</option>
-                    <option value="AHMAD ABU SUMMAYAH">AHMAD ABU SUMMAYAH</option>
-                </select>
+                <input type="text" required value={title} onChange={(e) => setAuthor(e.target.value) }/>
                 {!loading && <button>Add blog</button>}
                 {loading && <button>Adding blog...</button>}
             </form>
