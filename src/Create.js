@@ -31,7 +31,7 @@ try {
                 <label>About new blog:</label>
                 <textarea required value={body} onChange={(e) => setBody(e.target.value)}></textarea>
                 <label>Written by:</label>
-                <input type="text" required value={title} onChange={(e) => setAuthor(e.target.value) }/>
+                <input type="text" required value={author} onChange={(e) => setAuthor(e.target.value) }/>
                 {!loading && <button>Add blog</button>}
                 {loading && <button>Adding blog...</button>}
             </form>
