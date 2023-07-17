@@ -27,7 +27,7 @@ const useFetch = () => {
             getData();
      return () => abortCont.abort();
 
-    }, [getData(), abortCont]);
+    }, [getData(), abortCont, data, error]);
 
     return {data, loading, error, blogsCollection, getData}
 }

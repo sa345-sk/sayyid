@@ -5,15 +5,12 @@ import { docRef } from './config/firebase';
 import { doc, getDoc } from 'firebase/firestore';
 
 const Check = () => {
-    //const navigate = useNavigate();
     const [blog, setBlog] = useState(null)
     const [error, setError] = useState(null)
     const [loading, setLoading] = useState(true)
     const { id } = useParams()
-    //const { loading, error } = useFetch();
-    //console.log(blog)
     const co = doc(docRef, 'blogs', id)
-    //console.log(co)
+
     useEffect(() => {
         getDoc(co)
             .then((doc) => {
@@ -21,7 +18,7 @@ const Check = () => {
                 setError(false)
                 setLoading(false)
             }).catch((err) => {
-                console.log(err)
+                alert(err)
                 //setError(err)
                /* if (err) {
                     alert('failed')

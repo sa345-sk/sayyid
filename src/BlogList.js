@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 
 const BlogList = ({ blogs} ) => {
-    //In the blog-preview box copy this and paste it close to the class find out what ot does" key={blog.id}"
-    
     return (
         <div className="blog-list">
             {blogs.map((blog) => (
