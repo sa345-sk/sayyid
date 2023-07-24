@@ -18,7 +18,7 @@ const Check = () => {
                 setError(false)
                 setLoading(false)
             }).catch((err) => {
-                alert(err)
+                prompt(err)
                 //setError(err)
                /* if (err) {
                     alert('failed')

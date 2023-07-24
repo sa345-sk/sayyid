@@ -16,11 +16,8 @@ const useFetch = () => {
             setLoading(false)
             setError(null);
         } catch (err) {
-            console.log(err)
-            if (err) {
-                setError(err);
-                setLoading(false)
-            }
+            alert(err)
+            return err;
         }
     }
     useEffect(() => {

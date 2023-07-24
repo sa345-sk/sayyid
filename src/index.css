@@ -103,7 +103,9 @@ body {
           border-radius: 8px;
           cursor: pointer;
         }
-
+        .blog-list div{
+          font-family: arial;
+        }
         .blog-list p {
           padding-top: 20px;
           padding-bottom: 20px;
