@@ -15,5 +15,5 @@ const BlogList = ({ blogs} ) => {
         </div>
         );
 }
- 
+
 export default BlogList;

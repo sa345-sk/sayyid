@@ -6,9 +6,10 @@ const Create = () => {
 const [title, setTitle] = useState('');
 const [body, setBody] = useState('');
 const [author, setAuthor] = useState('');
-const [loading, setLoading] = useState(false)
+const [loading, setLoading] = useState(false);
+const [error, setError] = useState(null)
 const navigate = useNavigate()
-    const {  blogsCollection, getData } = useFetch();
+const {  blogsCollection, getData } = useFetch();
 const handleSubmit = async (e) => {
   e.preventDefault();
 setLoading(true)
@@ -16,8 +17,11 @@ try {
     await addDoc(blogsCollection, { title: title, body: body, author: author })
     navigate('/')
     getData();
+    setError(false)
 } catch (err) {
-   console.log(err);   
+   console.log(err);
+   setError(`ERROR HAS OCCURED ${err.message}`);
+   setLoading(false)   
 }
 
 }
@@ -34,6 +38,7 @@ try {
                 <input type="text" required value={author} onChange={(e) => setAuthor(e.target.value) }/>
                 {!loading && <button>Add blog</button>}
                 {loading && <button>Adding blog...</button>}
+                {error && <div>{error}</div>}
             </form>
         </div>
 

@@ -7,7 +7,7 @@ const useFetch = () => {
     let [error, setError] = useState(null);
     let blogsCollection = collection(docRef, 'blogs'); 
     const abortCont = new AbortController();
-   
+  
     async function getData() {
         try {
             const data = await getDocs(blogsCollection, { signal: abortCont.signal });
@@ -16,7 +16,9 @@ const useFetch = () => {
             setLoading(false)
             setError(null);
         } catch (err) {
-            setError('ERROR HAS OCCURED:' + err.message)
+            setError(`Error Has Occured: ${err.message}`);
+            setLoading(false);
+            setData(false)
             return err;
         }
     }
@@ -24,7 +26,7 @@ const useFetch = () => {
             getData();
      return () => abortCont.abort();
 
-    }, [getData()]);
+    }, []);
 
     return {data, loading, error, blogsCollection, getData}
 }
