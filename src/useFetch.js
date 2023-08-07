@@ -16,7 +16,7 @@ const useFetch = () => {
             setLoading(false)
             setError(null);
         } catch (err) {
-            alert(err)
+            setError('ERROR HAS OCCURED:' + err.message)
             return err;
         }
     }
@@ -24,7 +24,7 @@ const useFetch = () => {
             getData();
      return () => abortCont.abort();
 
-    }, [getData(), abortCont, data, error]);
+    }, [getData()]);
 
     return {data, loading, error, blogsCollection, getData}
 }

@@ -12,20 +12,32 @@ const Check = () => {
     const co = doc(docRef, 'blogs', id)
 
     useEffect(() => {
-        getDoc(co)
+     /*getDoc(co)
             .then((doc) => {
                 setBlog(doc.data(), doc.id)
                 setError(false)
                 setLoading(false)
             }).catch((err) => {
                 prompt(err)
-                //setError(err)
+                //setError(err)c 
                /* if (err) {
                     alert('failed')
                     //setError('Request failed!');
-                }**/
+                }*
                 return err;
-            })
+            })*/
+            const getSingle = async () => {
+                try {
+                    const doc = await getDoc(co)
+                    setBlog(doc.data(), doc.id)
+                    setError(false)
+                    setLoading(false)
+                } catch (error) {
+                    setError('ERROR HAS OSCCURED:' + error.message);
+                    return error;
+                }
+            }
+           getSingle()
     }, [co])
 
     return (
